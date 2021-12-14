@@ -1,0 +1,87 @@
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<br><br><br><br><br>
+<section class="content-section" id="portfolio" style="background-image:url(../assets/images/bg.jpg);">
+    <br>
+  <div class="yellow_bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title">
+              <h2>BUSCADOR</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="container">
+    <div class="content-section-heading text-center">
+        <h3 class="text-secondary mb-0"style="font-weight: bold;
+        font-size: 50px;
+        font-style: italic;
+        font-variant: small-caps;
+        font-family: roboto;
+        text-transform: capitalize;
+        letter-spacing: 4px;
+        color: #bb6b21;
+        text-align:center;
+        word-spacing: 8px">Encuentra todos los lugares que te puedes imaginar</h3>
+        <br>
+        <h4 class="mb-5" style=" font-family: Lucida Sans Regular;
+        font-weight: bold;
+        text-align:center;
+        text-transform: uppercase;">Asi como las mejores recetas de cocina</h4>
+    </div>
+    <div class="row no-gutters">
+        <div class="col-lg-6">
+            <a class="portfolio-item">
+                <div class="caption">
+                    <div class="caption-content">
+                        <div class="h2">{{nombre1}}</div>
+                        <p class="mb-0">{{inf}}</p>
+                        <p class="mb-0" *ngFor="let item of desayunos">{{item}}</p>
+                    </div>
+                </div>
+                <img class="img-fluid" src="../assets/images/restaurantMexico.png" alt="..." />
+            </a>
+        </div>
+        <div class="col-lg-6">
+            <a class="portfolio-item">
+                <div class="caption">
+                    <div class="caption-content">
+                        <div class="h2">{{nombre2}}</div>
+                        <p class="mb-0">{{inf}}</p>
+                        <p class="mb-0" *ngFor="let item of carnes">{{item}}</p>
+                    </div>
+                </div>
+                <img class="img-fluid" src="../assets/images/restaurante2.jpg" alt="..." />
+            </a>
+        </div>
+        <div class="col-lg-6">
+            <a class="portfolio-item">
+                <div class="caption">
+                    <div class="caption-content">
+                        <div class="h2">{{nombre3}}</div>
+                        <p class="mb-0">{{inf}}</p>
+                        <p class="mb-0" *ngFor="let item of postres">{{item}}</p>
+                    </div>
+                </div>
+                <img class="img-fluid" src="../assets/images/playa.jpg" alt="..." />
+            </a>
+        </div>
+        <div class="col-lg-6">
+            <a class="portfolio-item">
+                <div class="caption">
+                    <div class="caption-content">
+                        <div class="h2">{{nombre4}}</div>
+                        <p class="mb-0">{{inf}}</p>
+                        <p class="mb-0" *ngFor="let item of especialidades">{{item}}</p>
+                    </div>
+                </div>
+                <img class="img-fluid" src="../assets/images/rustico.jpg" alt="..." />
+            </a>
+        </div>
+    </div>
+</div>
+</section>

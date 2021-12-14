@@ -1,0 +1,84 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<br><br><br><br><br>
+<section class="content-section" id="portfolio" style="background-image:url(../assets/images/bg.jpg);">
+    <br>
+    <div class="yellow_bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title">
+                <h2>REGISTRAR EMPRESA</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Registre sus Datos para Acceder al Sistema</h3></div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-floating mb-3">
+                                            <label for="inputEmail">Nombre de la empresa</label>
+                                            <input class="form-control" id="inputEmail" type="text" placeholder="Ej. México en tu casa." />
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <label for="inputEmail">Nombre del puesto</label>
+                                          <input class="form-control" id="inputEmail" type="email" placeholder="Ej. Tacos picantes"/>
+                                        </div> 
+          
+                                       <div class="card-header"><h3 class="text-center font-weight-light my-4">Datos de contacto</h3></div>
+                                       <br>
+                                       <div class="form-floating mb-3">
+                                        <label for="inputEmail">Nombre del dueño de la empresa</label>
+                                        <input class="form-control" id="inputEmail" type="email" placeholder="Ej. Juan" />
+                                     </div> 
+                                     <div class="form-floating mb-3">
+                                        <label for="inputEmail">Telefono</label>
+                                      <input class="form-control" id="inputEmail" type="email" placeholder="Ej. 4482737482" />
+                                     </div> 
+                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Credenciales de acceso</h3></div>
+                                     <br>
+                                     <div class="form-floating mb-3">
+                                        <label for="inputEmail">Email</label>
+                                      <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
+                                     </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <label for="inputPassword">Contraseña</label>
+                                                    <input class="form-control" id="inputPassword" type="password" placeholder="Crear Contraseña" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <label for="inputPasswordConfirm">Confirmar Contraseña</label>
+                                                    <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirmar Contraseña" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 mb-0">
+                                            <div class="d-grid"><a class="btn btn-primary btn-block" [routerLink]="['/iniciar']">Crear Cuenta</a></div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-footer text-center py-3">
+                                    <div class="small" style="text-align: justify;">Al hacer clic en el botón <strong>Crear Cuenta</strong> usted acepta que ha leído y está de acuerdo con el Aviso de Privacidad y los Términos y Condiciones para hacer uso del servicio de Expediente Clínico Electrónico. </div>
+                                    <br>
+                                    <div class="small"><a [routerLink]="['/iniciar']">Tienes cuenta? Inicia Sesion</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        </div>
+<br><br>
+</section>
