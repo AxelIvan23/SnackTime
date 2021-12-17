@@ -1,360 +1,101 @@
-<div id="layoutAuthentication">
-    <div id="layoutAuthentication_content">
-        <main>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-7">
-                        <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Registre sus Datos para Acceder al Sistema</h3></div>
-                            <div class="card-body">
-                                <form>
-                                    <div class="form-floating mb-3">
-                                      <div class="md-2">
-                                        <p>Prefijo</p>
-                                        <select class="form-control" name="select">
-                                          <option value="dr">Dr</option>
-                                          <option value="dra" selected>Dra</option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                        <label for="inputEmail">Nombre</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                      <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                      <label for="inputEmail">Apellido Paterno</label>
-                                    </div> 
-                                    <div class="form-floating mb-3">
-                                      <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                      <label for="inputEmail">Apellido Materno</label>
-                                   </div>  
-                                   <div class="form-floating mb-3">
-                                    <div class="md-2">
-                                      <p>Especialidad</p>
-                                      <select class="form-control" name="especialidad">
-                                        <option value="1">ACUPUNTURA
-                                        </option>
-                                        <option value="2">ADMINISTRACION HOSPITALARIA
-                                                                    </option>
-                                        <option value="3">ALERGIA E INMUNOLOGIA
-                                                                    </option>
-                                        <option value="4">ALGOLOGIA
-                                                                    </option>
-                                        <option value="5">ANATOMIA PATOLOGICA
-                                                                    </option>
-                                        <option value="6">ANESTESIOLOGIA
-                                                                    </option>
-                                        <option value="7">ANGIOLOGIA
-                                                                    </option>
-                                        <option value="8">ASMA BRONQUIAL
-                                                                    </option>
-                                        <option value="9">ATENCION DEL HOMBRE
-                                                                    </option>
-                                        <option value="10">AUDIOLOGIA
-                                                                    </option>
-                                        <option value="11">BACTERIOLOGIA
-                                                                    </option>
-                                        <option value="12">BARIATRIA
-                                                                    </option>
-                                        <option value="13">CARDIOLOGIA
-                                                                    </option>
-                                        <option value="14">CARDIOLOGIA PEDIATRICA
-                                                                    </option>
-                                        <option value="15">CIRUGIA CARDIOVASCULAR
-                                                                    </option>
-                                        <option value="16">CIRUGIA DE CUELLO
-                                                                    </option>
-                                        <option value="17">CIRUGIA DE TRASPLANTES
-                                                                    </option>
-                                        <option value="18">CIRUGIA ENDOSCOPICA
-                                                                    </option>
-                                        <option value="19">CIRUGIA GASTROINTESTINAL
-                                                                    </option>
-                                        <option value="20">CIRUGIA GENERAL
-                                                                    </option>
-                                        <option value="21">CIRUGIA GENERAL Y ENDOSCOP</option>
-                                        <option value="22">CIRUGIA MAXILOFACIAL
-                                                                    </option>
-                                        <option value="23">CIRUGIA OFTALMOLOGICA
-                                                                    </option>
-                                        <option value="24">CIRUGIA ONCOLOGICA
-                                                                    </option>
-                                        <option value="25">CIRUGIA ORAL
-                                                                    </option>
-                                        <option value="26">CIRUGIA ORAL Y MAXILOFACIAL
-                                                                    </option>
-                                        <option value="27">CIRUGIA ORTOPEDICA
-                                                                    </option>
-                                        <option value="28">CIRUGIA PEDIATRICA
-                                                                    </option>
-                                        <option value="29">CIRUGIA PLASTICA</option>
-                                        <option value="30">CIRUGIA UROLOGICA
-                                                                    </option>
-                                        <option value="31">CIRUGIA VASCULAR
-                                                                    </option>
-                                        <option value="32">CIRUJANO DENTISTA
-                                                                    </option>
-                                        <option value="33">CIRUJANO OTORRINOLARINGOLOGO
-                                                                    </option>
-                                        <option value="34">COLOPROCTOLOGIA
-                                                                    </option>
-                                        <option value="35">COLPOSCOPIA
-                                                                    </option>
-                                        <option value="36">CONTROL DE PESO
-                                                                    </option>
-                                        <option value="37">DERMATOLOGIA
-                                                                    </option>
-                                        <option value="38">DERMATOLOGIA PEDIATRICA
-                                                                    </option>
-                                        <option value="39">ENDOCRINOLOGIA
-                                                                    </option>
-                                        <option value="40">ENDOCRINOLOGIA PEDIATRICA
-                                                                    </option>
-                                        <option value="41">ENDOSCOPIA GASTROINTESTINAL
-                                                                    </option>
-                                        <option value="42">ENDOSCOPIA PEDIATRICA
-                                                                    </option>
-                                        <option value="43">FISIOTERAPIA
-                                                                    </option>
-                                        <option value="44">FONIATRIA
-                                                                    </option>
-                                        <option value="45">GASTROENTEROLOGIA
-                                                                    </option>
-                                        <option value="46">GASTROENTEROLOGIA PEDIATRICA
-                                                                    </option>
-                                        <option value="47">GENETICA
-                                                                    </option>
-                                        <option value="48">GERIATRIA
-                                                                    </option>
-                                        <option value="49">GERONTOLOGIA
-                                                                    </option>
-                                        <option value="50">GINECOLOGIA Y OBSTETRICIA
-                                                                    </option>
-                                        <option value="51">HEMATOLOGIA
-                                                                    </option>
-                                        <option value="52">HOMEOPATIA
-                                                                    </option>
-                                        <option value="53">HOMEOPATIA DENTAL
-                                                                    </option>
-                                        <option value="54">HOMOTOXICOLOGIA
-                                                                    </option>
-                                        <option value="55">IMPLANTOLOGIA DENTAL
-                                                                    </option>
-                                        <option value="56">INFECTOLOGIA
-                                                                    </option>
-                                        <option value="57">INFECTOLOGIA PEDIATRICA
-                                                                    </option>
-                                        <option value="58">INHALOTERAPIA
-                                                                    </option>
-                                        <option value="59">INMUNOLOGIA
-                                                                    </option>
-                                        <option value="60">MEDICINA ALTERNATIVA
-                                                                    </option>
-                                        <option value="61">MEDICINA ANTIENVEJECIMIENTO
-                                                                    </option>
-                                        <option value="62">MEDICINA BIOENERGETICA
-                                                                    </option>
-                                        <option value="63">MEDICINA CRITICA Y TERAPIA INTENSIVA
-                                                                    </option>
-                                        <option value="64">MEDICINA DE REHABILITACION
-                                                                    </option>
-                                        <option value="65">MEDICINA DEL ADOLESCENTE
-                                                                    </option>
-                                        <option value="66">MEDICINA DEL DEPORTE
-                                                                    </option>
-                                        <option value="67">MEDICINA DEL TRABAJO
-                                                                    </option>
-                                        <option value="68">MEDICINA ESTETICA
-                                                                    </option>
-                                        <option value="69">MEDICINA FAMILIAR
-                                                                    </option>
-                                        <option value="70">MEDICINA FISICA Y REHABILITACION
-                                                                    </option>
-                                        <option selected="selected" value="71">MEDICINA GENERAL
-                                                                    </option>
-                                        <option value="72">MEDICINA HIPERBARICA
-                                                                    </option>
-                                        <option value="73">MEDICINA INTERNA
-                                                                    </option>
-                                        <option value="74">MEDICINA LEGAL
-                                                                    </option>
-                                        <option value="75">MEDICINA NATURISTA
-                                                                    </option>
-                                        <option value="76">MEDICINA NUCLEAR
-                                                                    </option>
-                                        <option value="77">MEDICINA SUPLEMENTARIA E INMUNOTERAPIA
-                                                                    </option>
-                                        <option value="78">MEDICINA Y PATOLOGIA BUCAL
-                                                                    </option>
-                                        <option value="79">NEFROLOGIA
-                                                                    </option>
-                                        <option value="80">NEUMOLOGIA
-                                                                    </option>
-                                        <option value="81">NEUMOLOGIA PEDIATRICA
-                                                                    </option>
-                                        <option value="82">NEUMOLOGIA Y BRONCOSCOPIA
-                                                                    </option>
-                                        <option value="83">NEUMOLOGIA Y CIRUGIA DE TORAX
-                                                                    </option>
-                                        <option value="84">NEUROCIRUGIA
-                                                                    </option>
-                                        <option value="85">NEUROCIRUGIA PEDIATRICA
-                                                                    </option>
-                                        <option value="86">NEUROFISIOLOGIA
-                                                                    </option>
-                                        <option value="87">NEUROLOGIA
-                                                                    </option>
-                                        <option value="88">NEUROLOGIA PEDIATRICA
-                                                                    </option>
-                                        <option value="89">NEUROPSICOLOGIA
-                                                                    </option>
-                                        <option value="90">NEURORADIOLOGIA
-                                                                    </option>
-                                        <option value="91">NUTRICION
-                                                                    </option>
-                                        <option value="92">OFTALMOLOGIA
-                                                                    </option>
-                                        <option value="93">ONCOLOGIA
-                                                                    </option>
-                                        <option value="94">ONCOLOGIA QUIRURGICA
-                                                                    </option>
-                                        <option value="95">OPTOMETRISTA
-                                                                    </option>
-                                        <option value="96">ORTODONCIA
-                                                                    </option>
-                                        <option value="97">ORTOPEDIA
-                                                                    </option>
-                                        <option value="98">ORTOPEDIA DEL DEPORTE
-                                                                    </option>
-                                        <option value="99">ORTOPEDIA MAXILAR
-                                                                    </option>
-                                        <option value="100">ORTOPEDIA PEDIATRICA
-                                                                    </option>
-                                        <option value="101">ORTOPEDIA Y TRAUMATOLOGIA
-                                                                    </option>
-                                        <option value="102">OTORRINOLARINGOLOGIA
-                                                                    </option>
-                                        <option value="103">PARODONCIA
-                                                                    </option>
-                                        <option value="104">PATOLOGIA
-                                                                    </option>
-                                        <option value="105">PEDIATRA ALERGOLOGO
-                                                                    </option>
-                                        <option value="106">PEDIATRIA
-                                                                    </option>
-                                        <option value="107">PEDIATRIA Y NEONATOLOGIA
-                                                                    </option>
-                                        <option value="108">PERIODONCIA
-                                                                    </option>
-                                        <option value="109">PODOLOGIA
-                                                                    </option>
-                                        <option value="110">PROCTOLOGIA
-                                                                    </option>
-                                        <option value="111">PROSTODONCIA
-                                                                    </option>
-                                        <option value="112">PROTESIS BUCAL
-                                                                    </option>
-                                        <option value="113">PROTESIS MAXILOFACIAL
-                                                                    </option>
-                                        <option value="114">PROTESIS Y REHABILITACION BUCAL
-                                                                    </option>
-                                        <option value="115">PSICOAN</option>
-                                        <option value="116">PSICOLOGIA
-                                                                    </option>
-                                        <option value="117">PSICOLOGIA FORENSE
-                                                                    </option>
-                                        <option value="118">PSICOTERAPIA
-                                                                    </option>
-                                        <option value="119">PSICOTERAPIA ERICKSONIANA
-                                                                    </option>
-                                        <option value="120">PSIQUIATRIA
-                                                                    </option>
-                                        <option value="121">QUIROPRACTICO
-                                                                    </option>
-                                        <option value="122">RADIODIAGNOSTICO
-                                                                    </option>
-                                        <option value="123">RADIOLOGIA
-                                                                    </option>
-                                        <option value="124">REAHABILITACION NEURO - MUSCULOESQUELETICA
-                                                                    </option>
-                                        <option value="125">REGENERACION TISULAR
-                                                                    </option>
-                                        <option value="126">REHABILITACION BUCAL
-                                                                    </option>
-                                        <option value="127">REHABILITACION E IMPLANTOLOGIA BUCAL
-                                                                    </option>
-                                        <option value="128">REHABILITACION NEUROPSICOLOGICA
-                                                                    </option>
-                                        <option value="129">REUMATOLOGIA
-                                                                    </option>
-                                        <option value="130">SEXOLOGIA
-                                                                    </option>
-                                        <option value="131">TANATOLOGIA
-                                                                    </option>
-                                        <option value="132">TERAPEUTA
-                                                                    </option>
-                                        <option value="133">TERAPIA EN COMUNICACION HUMANA
-                                                                    </option>
-                                        <option value="134">TERAPIA FISICA Y REHABILITACION
-                                                                    </option>
-                                        <option value="135">TRATAMIENTO DEL VIH
-                                                                    </option>
-                                        <option value="136">TRATAMIENTO Y TRANSPLANTE CAPILAR
-                                                                    </option>
-                                        <option value="137">ULTRASONIDO DIAGNOSTICO
-                                                                    </option>
-                                        <option value="138">ULTRASONIDO DIAGNOSTICO Y DENSITOMETRIA
-                                                                    </option>
-                                        <option value="139">URGENCIAS MEDICO QUIRURGICA
-                                                                    </option>
-                                        <option value="140">UROLOGIA</option>
-                                      </select>
-                                    </div>
-                                   </div>  
-                                   <div class="card-header"><h3 class="text-center font-weight-light my-4">Datos de contacto</h3></div>
-                                   <br>
-                                   <div class="form-floating mb-3">
-                                    <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                    <label for="inputEmail">Celular</label>
-                                 </div> 
-                                 <div class="form-floating mb-3">
-                                  <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                  <label for="inputEmail">Correo Electronico</label>
-                                 </div> 
-                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Credenciales de acceso</h3></div>
-                                 <br>
-                                 <div class="form-floating mb-3">
-                                  <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                  <label for="inputEmail">Usuario</label>
-                                 </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <div class="form-floating mb-3 mb-md-0">
-                                                <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
-                                                <label for="inputPassword">Contraseña</label>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<br><br><br><br><br>
+<section class="content-section" id="portfolio" style="background-image:url(../assets/images/bg.jpg);">
+    <br>
+    <div class="yellow_bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title">
+                <h2>CREA EL PERFIL DE TU RESTAURANTE</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Registre sus Datos para Crear su Perfil</h3></div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-floating mb-3">
+                                            <label for="inputEmail">Nombre del Restaurante</label>
+                                            <input class="form-control" id="inputEmail" type="text" placeholder="Ej. Gorditas Don Juan" />
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <label for="inputEmail">Descripcion</label>
+                                          <input class="form-control" id="inputEmail" type="text" placeholder="Ej. Escriba una pequena descrpcion de su restaurante"/>
+                                        </div> 
+          
+                                       <div class="card-header"><h3 class="text-center font-weight-light my-4">Datos de contacto</h3></div>
+                                       <br>
+                                       <div class="form-floating mb-3">
+                                        <label for="inputEmail">Tipo de Restaurante</label>
+                                        <input class="form-control" id="inputEmail" type="text" placeholder="(Mejor Vista, Cafe, Lugar Rustico, Mariscos)" />
+                                     </div> 
+                                     <div class="form-floating mb-3">
+                                        <label for="inputEmail">Logo</label>
+                                      <input class="form-control" id="inputEmail" type="url" placeholder="Favor de poner URL de su logo" />
+                                     </div> 
+                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Credenciales de acceso</h3></div>
+                                     <br>
+                                     <div class="form-floating mb-3">
+                                        <label for="inputEmail">Ciudad</label>
+                                      <input class="form-control" id="text" type="email" placeholder="Ej. Mexico" />
+                                     </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <label for="inputPassword">Calle</label>
+                                                    <input class="form-control" id="inputPassword" type="text" placeholder="Ej. Arboledas" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <label for="inputPasswordConfirm">Fraccionamiento</label>
+                                                    <input class="form-control" id="inputPasswordConfirm" type="text" placeholder="Ej. Pulgas Pandas" />
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating mb-3 mb-md-0">
-                                                <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
-                                                <label for="inputPasswordConfirm">Confirmar Contraseña</label>
-                                            </div>
+                                        <div class="form-floating mb-3">
+                                            <label for="inputEmail">No. Ext</label>
+                                          <input class="form-control" id="text" type="email" placeholder="Ej. 123" />
+                                         </div>
+                                         <div class="form-floating mb-3">
+                                            <label for="inputEmail">CP</label>
+                                          <input class="form-control" id="text" type="email" placeholder="Ej. 20802" />
+                                         </div>
+                                         <div class="form-floating mb-3">
+                                            <label for="inputEmail">Latitud</label>
+                                          <input class="form-control" id="text" type="number"/>
+                                         </div>
+                                         <div class="form-floating mb-3">
+                                            <label for="inputEmail">Longitud</label>
+                                          <input class="form-control" id="text" type="number"/>
+                                         </div>
+                                        <div class="mt-4 mb-0">
+                                            <div class="d-grid"><a class="btn btn-primary btn-block" [routerLink]="['/perfil-Restaurante']">Crear Perfil</a></div>
                                         </div>
-                                    </div>
-                                    <div class="mt-4 mb-0">
-                                        <div class="d-grid"><a class="btn btn-primary btn-block" routerLink="/second-component" routerLinkActive="active">Crear Cuenta</a></div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="card-footer text-center py-3">
-                                <div class="small" style="text-align: justify;">Al hacer clic en el botón <strong>Crear Cuenta</strong> usted acepta que ha leído y está de acuerdo con el Aviso de Privacidad y los Términos y Condiciones para hacer uso del servicio de Expediente Clínico Electrónico. </div>
-                                <br>
-                                <div class="small"><a routerLink="/second-component" routerLinkActive="active">Tienes cuenta? Inicia Sesion</a></div>
+                                    </form>
+                                                                    
+                                </div>
+                                <div class="card-footer text-center py-3">
+                                    <div class="small" style="text-align: justify;">Al hacer clic en el botón <strong>Crear Perfil</strong> usted acepta que ha leído y está de acuerdo con el Aviso de Privacidad y los Términos y Condiciones para hacer uso del servicio de Localizacion. </div>
+                                    <br>
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
-    </div>
+            </main>
+        </div>
+        </div>
+<br><br>
+</section>
