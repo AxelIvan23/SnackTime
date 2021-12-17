@@ -61,7 +61,10 @@ import { MapComponent } from './map/map.component';
       {path: 'contactanos', component: FourtComponent},
       {path: 'iniciar', component: FiveComponent},
       {path: 'registrarse', component: SixcomponentComponent},
+      {path: 'perfil-Restaurante', component:HeroDetailComponent},
+      {path: 'crearPerfil-Restaurante', component: IniciarsesionComponent},
       {path: '**', pathMatch: 'full', component: FirstComponent}
+      
     ]),
   ],
   providers: [],
