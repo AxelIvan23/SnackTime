@@ -2,8 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import {GMapModule} from 'primeng/gmap';
+
 import {RouterModule} from '@angular/router';
-import { Router } from "@angular/router";
+import { Router } from "@angular/router"; 
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -23,6 +26,7 @@ import { SixcomponentComponent } from './sixcomponent/sixcomponent.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -37,13 +41,16 @@ import { FooterComponent } from './footer/footer.component';
     HeroDetailComponent,
     SixcomponentComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
+    GMapModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    GooglePlaceModule,
     RouterModule.forRoot([
       {path: '', component: FirstComponent},
       {path: 'acerca', component: SecondComponent},

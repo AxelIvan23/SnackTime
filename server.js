@@ -10,8 +10,8 @@ app.use(bodyparser.urlencoded({
 }));
 
 var connAttrs = {
-    "user" : "axel",
-    "password" : "asdfzxcvqwer",
+    "user" : "rayos",
+    "password" : "rayos",
     "connectString": "localhost/orcl"
 }
 
@@ -34,7 +34,7 @@ app.get('/proyecto', function (req, res) {
             }));
             return;
         }
-        connection.execute("SELECT * FROM AREA", {}, {
+        connection.execute("SELECT * FROM productos", {}, {
             outFormat: oracledb.OBJECT // Return the result as Object
         }, function (err, result) {
             if (err) {
@@ -45,6 +45,7 @@ app.get('/proyecto', function (req, res) {
                     detailed_message: err.message
                 }));
             } else {
+                console.log(result);
                 res.contentType('application/json').status(200);
                 res.send(JSON.stringify(result.rows));
 				
@@ -57,11 +58,35 @@ app.get('/proyecto', function (req, res) {
                     } else {
                         console.log("GET /sendTablespace : Connection released");
                     }
-                });
+            });
         });
     });
 });
 
+app.get('/procedure', async function (req, res) {
+    "use strict";
+    oracledb.getConnection(connAttrs, async function (err, connection) {
+        
+         if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error connecting to DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        try {
+        const result = await connection.execute("BEGIN tot_lib('2', :ret); END;", {ret: { dir: oracledb.BIND_OUT,
+        type: oracledb.STRING, maxSize: 40 }});// Return the result as Object  
+        console.log(result.outBinds);
+        res.send([{Libros: result.outBinds}]);
+    } catch (err) {
+
+    }
+    });
+});
 
 app.listen(4201,'localhost',function(){
     console.log("Server escuchando en el puerto 4201");
