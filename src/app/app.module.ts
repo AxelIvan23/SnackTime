@@ -11,6 +11,8 @@ import { Router } from "@angular/router";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+import {MatTableModule} from '@angular/material/table';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FirstComponent } from './first/first.component';
@@ -48,6 +50,7 @@ import { MapComponent } from './map/map.component';
     BrowserModule,
     GMapModule,
     FormsModule,
+    MatTableModule,
     ReactiveFormsModule,
     HttpClientModule,
     GooglePlaceModule,

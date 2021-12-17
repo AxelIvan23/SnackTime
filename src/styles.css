@@ -10567,4 +10567,24 @@ ul.lik li.active a {
   justify-content: center;
   font-size: 1.5rem;
 }
+
+.custom-table {
+  width: 100%;
+  max-height: 400px;
+  overflow: auto; 
+}
+
+table {
+  width: 100%;
+  border-collapse: separate !important;
+  border-radius: 5%;
+  height: 50px;
+  overflow: hidden; 
+}
+
+.custom-table th{
+  background-color: #F8EAA0;
+}
 /* --------------------------------------------------- SIDEBAR STYLE ----------------------------------------------------- */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
