@@ -10574,6 +10574,23 @@ ul.lik li.active a {
   overflow: auto; 
 }
 
+.searchs {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.searchs p {
+  font-size: 3rem;
+  vertical-align: text-bottom;
+  line-height: 70%;
+}
+
+.searchs .search{
+  padding: 1vh 2vw;
+  height: 50px;
+}
+
 table {
   width: 100%;
   border-collapse: separate !important;

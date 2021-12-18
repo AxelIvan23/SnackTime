@@ -35,13 +35,19 @@ export class MapComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  	this.dataSource.data = this.ELEMENT_DATA;
+  	this.dataSource.data = this.data;
   	this.options = {
         center: {lat: 36.890257, lng: 30.707417},
         zoom: 12
     };
 
     
+  }
+
+  buscar(lngt:String, lat:String) {
+  	alert("leonor?");
+  	 if (lngt=="" || lat== "")
+  	 	alert("Puto");
   }
 
   zoomIn(map) {
