@@ -2,6 +2,12 @@ var express = require("express");
 var app = express();
 var bodyparser = require('body-parser');
 var oracledb = require('oracledb');
+const cors = require("cors");
+
+var corsOptions = {
+    origin: "http://localhost:4200/index.html"
+}
+app.use(cors());
 
 app.use(bodyparser.json());
 
@@ -10,18 +16,22 @@ app.use(bodyparser.urlencoded({
 }));
 
 var connAttrs = {
-    "user" : "rayos",
-    "password" : "rayos",
-    "connectString": "localhost/orcl"
+    "user" : "DIDIERSNACK",
+    "password" : "snack123",
+    "connectString": "localhost/xe"
 }
 
 app.get('/', (req,res)=>{
     res.send([{message: 'hola a todos'}]);
 });
 
+
+
 /////Consulter users////// done
-app.get('/proyecto', function (req, res) {
+app.get('/select', function (req, res) {
     "use strict";
+
+    console.log("siu");
 
     oracledb.getConnection(connAttrs, function (err, connection) {
         if (err) {
@@ -34,7 +44,7 @@ app.get('/proyecto', function (req, res) {
             }));
             return;
         }
-        connection.execute("SELECT * FROM productos", {}, {
+        connection.execute("SELECT NOMBRE FROM RESTAURANTE ORDER BY RANKING DESC", {}, {
             outFormat: oracledb.OBJECT // Return the result as Object
         }, function (err, result) {
             if (err) {
@@ -45,7 +55,6 @@ app.get('/proyecto', function (req, res) {
                     detailed_message: err.message
                 }));
             } else {
-                console.log(result);
                 res.contentType('application/json').status(200);
                 res.send(JSON.stringify(result.rows));
 				
@@ -58,16 +67,14 @@ app.get('/proyecto', function (req, res) {
                     } else {
                         console.log("GET /sendTablespace : Connection released");
                     }
-            });
+                });
         });
     });
 });
 
-app.get('/procedure', async function (req, res) {
-    "use strict";
-    oracledb.getConnection(connAttrs, async function (err, connection) {
-        
-         if (err) {
+app.post('/create', async function(req, res) {
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
             // Error connecting to DB
             res.set('Content-Type', 'application/json');
             res.status(500).send(JSON.stringify({
@@ -77,14 +84,42 @@ app.get('/procedure', async function (req, res) {
             }));
             return;
         }
-        try {
-        const result = await connection.execute("BEGIN tot_lib('2', :ret); END;", {ret: { dir: oracledb.BIND_OUT,
-        type: oracledb.STRING, maxSize: 40 }});// Return the result as Object  
-        console.log(result.outBinds);
-        res.send([{Libros: result.outBinds}]);
-    } catch (err) {
 
-    }
+        const table = req.params.table;
+        const key = String(req.body.key);
+        const keyType = req.body.keyType;
+        const createObj = req.body.createObj;
+
+        var keys = Object.keys(createObj);
+        var query = `INSERT INTO PROVEDOR VALUES(${key})`;
+
+        console.log(`Ejecutando: ${query}`);
+
+        connection.execute(query, {}, {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit: true  //Para que la eliminación se efectúe correctamente
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.contentType('application/json').status(200);
+                res.send(JSON.stringify('Se creó el registro con ID: '+result.lastRowid));
+            }
+            // Release the connection
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+            });
+        });
     });
 });
 
