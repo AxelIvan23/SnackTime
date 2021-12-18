@@ -1,16 +1,16 @@
 <div class="search">
-        <input type="text" placeholder="Buscar" class="search-txt">
-        <i class="fas fa-search-location search-btn"></i>
+        <input type="text" placeholder="Buscar" class="search-txt" #place>
+        <span (click)="lugar(place.value,gmap.getMap())"><i class="fas fa-search-location search-btn"></i></span>
 </div>
 <br><br>
 <div class="searchs">
 	<div class="search">
-	    <input type="text" placeholder="Longitud" class="search-txt" id="lngt" #lngt>
+	    <input type="text" placeholder="Latitud" class="search-txt" id="lat" #lat>
 	</div>
 	<p>,</p>
 	<div class="search">
-	    <input type="text" placeholder="Latitud" class="search-txt" id="lat" #lat >
-	    <span (click)="buscar(lngt.value,lat.value)"><i class="fas fa-search-location search-btn"></i></span>
+	    <input type="text" placeholder="Longitud" class="search-txt" id="lngt" #lngt >
+	    <span (click)="buscar(lat.value,lngt.value)"><i class="fas fa-search-location search-btn"></i></span>
 	</div>
 </div>
     <br>
