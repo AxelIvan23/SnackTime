@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioAngularOracleService {
 
-  constructor(private http: HttpClient) { }
-  usuarios : any[] = [];
+  url: string = "http://localhost:4201";
+  constructor(private httpClient: HttpClient) { }
 
-  private cargarUsuarios() {
-    this.http.get('http://localhost:4021/users')
-    .subscribe((resp: any[]) => {
-      this.usuarios = resp;
-      console.log(this.usuarios);
-    });
+  get(query : string ): Observable<any>{
+    return this.httpClient.get(this.url+"/"+query) as Observable<any>;
+  }
+
+  create(newRow: any): void {
+    this.httpClient.post(this.url + `/create`, newRow).subscribe(() => console.log('Update Exitoso'));
   }
 }
