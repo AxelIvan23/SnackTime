@@ -15,6 +15,9 @@ export class ServicioAngularOracleService {
   }
 
   create(newRow: any): void {
-    this.httpClient.post(this.url + `/create`, newRow).subscribe(() => console.log('Update Exitoso'));
+    this.httpClient.post(this.url + `/createEmp`, newRow).subscribe(() => console.log('Update Exitoso'));
+  }
+  create2(newRow: any): void {
+    this.httpClient.post(this.url + `/createRes`, newRow).subscribe(() => console.log('Update Exitoso'));
   }
 }

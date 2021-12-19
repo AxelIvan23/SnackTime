@@ -44,7 +44,7 @@ app.get('/select', function (req, res) {
             }));
             return;
         }
-        connection.execute("SELECT NOMBRE FROM RESTAURANTE WHERE TIPO='Mexicano' AND ROWNUM <=5 ORDER BY RANKING DESC", {}, {
+        connection.execute("SELECT NOMBRE FROM RESTAURANTE ORDER BY RANKING DESC", {}, {
             outFormat: oracledb.OBJECT // Return the result as Object
         }, function (err, result) {
             if (err) {
@@ -71,6 +71,7 @@ app.get('/select', function (req, res) {
         });
     });
 });
+
 app.get('/select2', function (req, res) {
     "use strict";
 
@@ -100,7 +101,7 @@ app.get('/select2', function (req, res) {
             } else {
                 res.contentType('application/json').status(200);
                 res.send(JSON.stringify(result.rows));
-				
+                
             }
             // Release the connection
             connection.release(
@@ -143,7 +144,7 @@ app.get('/select3', function (req, res) {
             } else {
                 res.contentType('application/json').status(200);
                 res.send(JSON.stringify(result.rows));
-				
+                
             }
             // Release the connection
             connection.release(
@@ -161,21 +162,6 @@ app.get('/select4', function (req, res) {
     "use strict";
 
     console.log("siu");
-
-<<<<<<< HEAD
-=======
-/////Consulter users////// done
-app.get('/BusCoord/:lat/:lngt', function (req, res) {
-    "use strict";
-
-    
-    const lngt_inf = Number(req.params.lngt) -0.04;
-    const lngt_sup = Number(req.params.lngt) +0.04;
-
-    const lat_inf = Number(req.params.lat) -0.04;
-    const lat_sup = Number(req.params.lat) +0.04;
-    console.log(lat_sup);
->>>>>>> 2d0c0da7b65b056b45a7b7bdf73108591030a2ec
     oracledb.getConnection(connAttrs, function (err, connection) {
         if (err) {
             // Error connecting to DB
@@ -187,14 +173,7 @@ app.get('/BusCoord/:lat/:lngt', function (req, res) {
             }));
             return;
         }
-<<<<<<< HEAD
         connection.execute("SELECT NOMBRE FROM RESTAURANTE WHERE TIPO='Italiano' AND ROWNUM <=5 ORDER BY RANKING DESC", {}, {
-=======
-
-        const query = "SELECT NOMBRE, DESCRIPCION, TIPO, ID, LATITUD, LONGITUD FROM RESTAURANTE WHERE LATITUD>"+lat_inf+" AND LATITUD<"+lat_sup+" AND LONGITUD>"+lngt_inf+" AND LONGITUD <"+lngt_sup;
-        console.log(query);
-        connection.execute(query, {}, {
->>>>>>> 2d0c0da7b65b056b45a7b7bdf73108591030a2ec
             outFormat: oracledb.OBJECT // Return the result as Object
         }, function (err, result) {
             if (err) {
@@ -207,10 +186,6 @@ app.get('/BusCoord/:lat/:lngt', function (req, res) {
             } else {
                 res.contentType('application/json').status(200);
                 res.send(JSON.stringify(result.rows));
-<<<<<<< HEAD
-				
-=======
->>>>>>> 2d0c0da7b65b056b45a7b7bdf73108591030a2ec
             }
             // Release the connection
             connection.release(
@@ -224,9 +199,57 @@ app.get('/BusCoord/:lat/:lngt', function (req, res) {
         });
     });
 });
-<<<<<<< HEAD
-app.post('/actualizar', async function(req, res) {
-=======
+/////Consulter users////// done
+app.get('/BusCoord/:lat/:lngt', function (req, res) {
+    "use strict";
+
+    
+    const lngt_inf = Number(req.params.lngt) -0.04;
+    const lngt_sup = Number(req.params.lngt) +0.04;
+
+    const lat_inf = Number(req.params.lat) -0.04;
+    const lat_sup = Number(req.params.lat) +0.04;
+    console.log(lat_sup);
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error connecting to DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+
+        const query = "SELECT NOMBRE, DESCRIPCION, TIPO, ID, LATITUD, LONGITUD FROM RESTAURANTE WHERE LATITUD>"+lat_inf+" AND LATITUD<"+lat_sup+" AND LONGITUD>"+lngt_inf+" AND LONGITUD <"+lngt_sup;
+        console.log(query);
+        connection.execute(query, {}, {
+            outFormat: oracledb.OBJECT // Return the result as Object
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.contentType('application/json').status(200);
+                res.send(JSON.stringify(result.rows));
+            }
+            // Release the connection
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+});
 
 app.get('/detalles/:id', function (req, res) {
     "use strict";
@@ -320,8 +343,7 @@ app.get('/empresa/:id', function (req, res) {
     });
 });
 
-app.post('/create', async function(req, res) {
->>>>>>> 2d0c0da7b65b056b45a7b7bdf73108591030a2ec
+app.post('/createEmp', function(req, res) {
     oracledb.getConnection(connAttrs, function (err, connection) {
         if (err) {
             // Error connecting to DB
@@ -334,13 +356,72 @@ app.post('/create', async function(req, res) {
             return;
         }
 
-        const table = req.params.table;
-        const key = String(req.body.key);
-        const keyType = req.body.keyType;
-        const createObj = req.body.createObj;
+        const empresa = req.body.empresa;
+        const fecha = req.body.fecha;
+        const pais = req.body.pais;
+        const telefono = req.body.telefono;
+        const contrasena = req.body.contrasena;
+        const email = req.body.email;
 
-        var keys = Object.keys(createObj);
-        var query = `INSERT INTO EMPRESA VALUES(${key})`;
+        var query = `INSERT INTO EMPRESA(Nombre, Correo, Contra, Telefono, Pais, Fecha_alta) VALUES('${empresa}','${email}','${contrasena}','${telefono}','${pais}',TO_DATE('${fecha}', 'YYYY-MM-DD'))`;
+
+        console.log(`Ejecutando: ${query}`);
+
+        connection.execute(query, {}, {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit: true  //Para que la eliminación se efectúe correctamente
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.contentType('application/json').status(200);
+                res.send(JSON.stringify('Se creó el registro con ID: '+result.lastRowid));
+            }
+            // Release the connection
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+            });
+        });
+    });
+});
+
+app.post('/createRes', function(req, res) {
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error connecting to DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+
+        const nombre = req.body.nombre;
+        const descripcion = req.body.descripcion;
+        const tipo = req.body.tipo;
+        const logo = req.body.logo;
+        const ciudad = req.body.ciudad;
+        const calle = req.body.calle;
+        const fraccionamiento = req.body.fraccionamiento;
+        const ext = req.body.ext;
+        const cp = req.body.cp;
+        const latitud = req.body.latitud;
+        const longitud = req.body.longitud;
+
+
+        var query = `INSERT INTO RESTAURANTE (nombre, descripcion, tipo, logo, ciudad, calle, fraccionamiento, ext, cp, latitud, longitud) VALUES('${nombre}','${descripcion}','${tipo}','${logo}','${ciudad}','${calle}', '${fraccionamiento}', ${ext},${cp},${latitud},${longitud}))`;
 
         console.log(`Ejecutando: ${query}`);
 

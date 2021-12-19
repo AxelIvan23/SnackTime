@@ -14,10 +14,17 @@ export class SixcomponentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createRow(){
-    this.service.get("actualizar").subscribe(data => {
-      console.log(data);
-    })
+  createRow(empresa, fecha, pais, telefono, email, contrasena){
+    console.log(contrasena);
+    const row = {
+      empresa: empresa,
+      fecha: fecha,
+      pais: pais,
+      telefono: telefono,
+      email: email,
+      contrasena: contrasena
+    }
+    this.service.create(row);
   }
 
   

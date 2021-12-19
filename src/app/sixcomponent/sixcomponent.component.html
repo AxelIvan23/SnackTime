@@ -26,34 +26,34 @@
                                     <form>
                                         <div class="form-floating mb-3">
                                             <label for="inputEmail">Nombre de la empresa</label>
-                                            <input class="form-control" id="inputEmail" type="text" placeholder="Ej. México en tu casa." />
+                                            <input class="form-control" id="inputEmail" type="text" placeholder="Ej. México en tu casa." #empresa/>
                                         </div>
                                         <div class="form-floating mb-3">
                                             <label for="inputEmail">Fecha</label>
-                                          <input class="form-control" id="inputEmail" type="date" placeholder="Ej. Tacos picantes"/>
+                                          <input class="form-control" id="inputEmail" type="date" placeholder="Ej. Tacos picantes" #fecha/>
                                         </div> 
           
                                        <div class="card-header"><h3 class="text-center font-weight-light my-4">Datos de contacto</h3></div>
                                        <br>
                                        <div class="form-floating mb-3">
                                         <label for="inputEmail">Pais</label>
-                                        <input class="form-control" id="inputEmail" type="text" placeholder="Ej. Mexico" />
+                                        <input class="form-control" id="inputEmail" type="text" placeholder="Ej. Mexico" #pais/>
                                      </div> 
                                      <div class="form-floating mb-3">
                                         <label for="inputEmail">Telefono</label>
-                                      <input class="form-control" id="inputEmail" type="text" placeholder="Ej. 4482737482" />
+                                      <input class="form-control" id="inputEmail" type="text" placeholder="Ej. 4482737482" #telefono/>
                                      </div> 
                                      <div class="card-header"><h3 class="text-center font-weight-light my-4">Credenciales de acceso</h3></div>
                                      <br>
                                      <div class="form-floating mb-3">
                                         <label for="inputEmail">Email</label>
-                                      <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
+                                      <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" #email/>
                                      </div>
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
                                                     <label for="inputPassword">Contraseña</label>
-                                                    <input class="form-control" id="inputPassword" type="password" placeholder="Crear Contraseña" />
+                                                    <input class="form-control" id="inputPassword" type="password" placeholder="Crear Contraseña" #contrasena/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -64,7 +64,7 @@
                                             </div>
                                         </div>
                                         <div class="mt-4 mb-0">
-                                            <div class="d-grid"><a class="btn btn-primary btn-block" (click)="createRow()" [routerLink]="['/iniciar']">Crear Cuenta</a></div>
+                                            <div class="d-grid"><a class="btn btn-primary btn-block" (click)="createRow(empresa.value, fecha.value, pais.value, telefono.value, email.value, contrasena.value)">Crear Cuenta</a></div>
                                         </div>
                                     </form>
                                 </div>

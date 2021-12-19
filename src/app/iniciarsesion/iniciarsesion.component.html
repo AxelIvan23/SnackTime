@@ -26,61 +26,65 @@
                                     <form>
                                         <div class="form-floating mb-3">
                                             <label for="inputEmail">Nombre del Restaurante</label>
-                                            <input class="form-control" id="inputEmail" type="text" placeholder="Ej. Gorditas Don Juan" />
+                                            <input class="form-control" id="inputEmail" type="text" placeholder="Ej. Gorditas Don Juan" #Nombre />
                                         </div>
                                         <div class="form-floating mb-3">
                                             <label for="inputEmail">Descripcion</label>
-                                          <input class="form-control" id="inputEmail" type="text" placeholder="Ej. Escriba una pequena descrpcion de su restaurante"/>
+                                          <input class="form-control" id="inputEmail" type="text" placeholder="Ej. Escriba una pequena descrpcion de su restaurante" #Descripcion/>
                                         </div> 
           
                                        <div class="card-header"><h3 class="text-center font-weight-light my-4">Datos de contacto</h3></div>
                                        <br>
                                        <div class="form-floating mb-3">
                                         <label for="inputEmail">Tipo de Restaurante</label>
-                                        <input class="form-control" id="inputEmail" type="text" placeholder="(Mejor Vista, Cafe, Lugar Rustico, Mariscos)" />
+                                        <input class="form-control" id="inputEmail" type="text" placeholder="(Mejor Vista, Cafe, Lugar Rustico, Mariscos)"
+                                        #Tipo />
                                      </div> 
                                      <div class="form-floating mb-3">
                                         <label for="inputEmail">Logo</label>
-                                      <input class="form-control" id="inputEmail" type="url" placeholder="Favor de poner URL de su logo" />
+                                      <input class="form-control" id="inputEmail" type="url" placeholder="Favor de poner URL de su logo" 
+                                      #Logo/>
                                      </div> 
                                      <div class="card-header"><h3 class="text-center font-weight-light my-4">Credenciales de acceso</h3></div>
                                      <br>
                                      <div class="form-floating mb-3">
                                         <label for="inputEmail">Ciudad</label>
-                                      <input class="form-control" id="text" type="email" placeholder="Ej. Mexico" />
+                                      <input class="form-control" id="text" type="email" placeholder="Ej. Mexico" #Ciudad />
                                      </div>
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
                                                     <label for="inputPassword">Calle</label>
-                                                    <input class="form-control" id="inputPassword" type="text" placeholder="Ej. Arboledas" />
+                                                    <input class="form-control" id="inputPassword" type="text" placeholder="Ej. Arboledas" #Calle/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
                                                     <label for="inputPasswordConfirm">Fraccionamiento</label>
-                                                    <input class="form-control" id="inputPasswordConfirm" type="text" placeholder="Ej. Pulgas Pandas" />
+                                                    <input class="form-control" id="inputPasswordConfirm" type="text" placeholder="Ej. Pulgas Pandas" #Fraccionamiento/>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-floating mb-3">
                                             <label for="inputEmail">No. Ext</label>
-                                          <input class="form-control" id="text" type="email" placeholder="Ej. 123" />
+                                          <input class="form-control" id="text" type="email" placeholder="Ej. 123" #Ext/>
                                          </div>
                                          <div class="form-floating mb-3">
                                             <label for="inputEmail">CP</label>
-                                          <input class="form-control" id="text" type="email" placeholder="Ej. 20802" />
+                                          <input class="form-control" id="text" type="email" placeholder="Ej. 20802" #CP />
                                          </div>
                                          <div class="form-floating mb-3">
                                             <label for="inputEmail">Latitud</label>
-                                          <input class="form-control" id="text" type="number"/>
+                                          <input class="form-control" id="text" type="number" #Latitud/>
                                          </div>
                                          <div class="form-floating mb-3">
                                             <label for="inputEmail">Longitud</label>
-                                          <input class="form-control" id="text" type="number"/>
+                                          <input class="form-control" id="text" type="number" #Longitud/>
                                          </div>
                                         <div class="mt-4 mb-0">
-                                            <div class="d-grid"><a class="btn btn-primary btn-block" [routerLink]="['/perfil-Restaurante']">Crear Perfil</a></div>
+                                            <div class="d-grid"><a class="btn btn-primary btn-block" 
+                                              (click)="createRow(Nombre.value, Descripcion.value, Tipo.value, Logo.value, Ciudad.value, Calle.value, 
+                                              Fraccionamiento.value, Ext.value, CP.value, Latitud.value, Longitud.value)">Crear Perfil</a></div>
                                         </div>
                                     </form>
                                                                     
