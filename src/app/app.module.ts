@@ -63,6 +63,7 @@ import { MapComponent } from './map/map.component';
       {path: 'registrarse', component: SixcomponentComponent},
       {path: 'perfil-Restaurante', component:HeroDetailComponent},
       {path: 'crearPerfil-Restaurante', component: IniciarsesionComponent},
+      {path: 'detalles/:id', component: HeroDetailComponent},
       {path: '**', pathMatch: 'full', component: FirstComponent}
       
     ]),

@@ -16,9 +16,9 @@ app.use(bodyparser.urlencoded({
 }));
 
 var connAttrs = {
-    "user" : "DIDIERSNACK",
-    "password" : "snack123",
-    "connectString": "localhost/xe"
+    "user" : "snack",
+    "password" : "snacktime",
+    "connectString": "localhost/orcl"
 }
 
 app.get('/', (req,res)=>{
@@ -162,6 +162,20 @@ app.get('/select4', function (req, res) {
 
     console.log("siu");
 
+<<<<<<< HEAD
+=======
+/////Consulter users////// done
+app.get('/BusCoord/:lat/:lngt', function (req, res) {
+    "use strict";
+
+    
+    const lngt_inf = Number(req.params.lngt) -0.04;
+    const lngt_sup = Number(req.params.lngt) +0.04;
+
+    const lat_inf = Number(req.params.lat) -0.04;
+    const lat_sup = Number(req.params.lat) +0.04;
+    console.log(lat_sup);
+>>>>>>> 2d0c0da7b65b056b45a7b7bdf73108591030a2ec
     oracledb.getConnection(connAttrs, function (err, connection) {
         if (err) {
             // Error connecting to DB
@@ -173,7 +187,14 @@ app.get('/select4', function (req, res) {
             }));
             return;
         }
+<<<<<<< HEAD
         connection.execute("SELECT NOMBRE FROM RESTAURANTE WHERE TIPO='Italiano' AND ROWNUM <=5 ORDER BY RANKING DESC", {}, {
+=======
+
+        const query = "SELECT NOMBRE, DESCRIPCION, TIPO, ID, LATITUD, LONGITUD FROM RESTAURANTE WHERE LATITUD>"+lat_inf+" AND LATITUD<"+lat_sup+" AND LONGITUD>"+lngt_inf+" AND LONGITUD <"+lngt_sup;
+        console.log(query);
+        connection.execute(query, {}, {
+>>>>>>> 2d0c0da7b65b056b45a7b7bdf73108591030a2ec
             outFormat: oracledb.OBJECT // Return the result as Object
         }, function (err, result) {
             if (err) {
@@ -186,7 +207,10 @@ app.get('/select4', function (req, res) {
             } else {
                 res.contentType('application/json').status(200);
                 res.send(JSON.stringify(result.rows));
+<<<<<<< HEAD
 				
+=======
+>>>>>>> 2d0c0da7b65b056b45a7b7bdf73108591030a2ec
             }
             // Release the connection
             connection.release(
@@ -200,7 +224,104 @@ app.get('/select4', function (req, res) {
         });
     });
 });
+<<<<<<< HEAD
 app.post('/actualizar', async function(req, res) {
+=======
+
+app.get('/detalles/:id', function (req, res) {
+    "use strict";
+
+    
+    const ID = Number(req.params.id);
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error connecting to DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+
+        const query = "SELECT * FROM RESTAURANTE WHERE ID="+ID;
+        console.log(query);
+        connection.execute(query, {}, {
+            outFormat: oracledb.OBJECT // Return the result as Object
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.contentType('application/json').status(200);
+                res.send(JSON.stringify(result.rows));
+            }
+            // Release the connection
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+});
+
+app.get('/empresa/:id', function (req, res) {
+    "use strict";
+
+    
+    const ID = Number(req.params.id);
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error connecting to DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+
+        const query = "SELECT * FROM EMPRESA WHERE ID_EMPRESA="+ID;
+        console.log(query);
+        connection.execute(query, {}, {
+            outFormat: oracledb.OBJECT // Return the result as Object
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.contentType('application/json').status(200);
+                res.send(JSON.stringify(result.rows));
+            }
+            // Release the connection
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+});
+
+app.post('/create', async function(req, res) {
+>>>>>>> 2d0c0da7b65b056b45a7b7bdf73108591030a2ec
     oracledb.getConnection(connAttrs, function (err, connection) {
         if (err) {
             // Error connecting to DB

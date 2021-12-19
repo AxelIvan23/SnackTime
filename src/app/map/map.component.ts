@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { HttpHeaders } from '@angular/common/http';
+import { ServicioAngularOracleService } from '../servicio-angular-oracle.service';
+import { Router } from '@angular/Router';
 
 @Component({
   selector: 'app-map',
@@ -13,46 +16,65 @@ export class MapComponent implements OnInit {
   options: any;
   overlays: any[];
 
-  displayedColumns = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns = ['NOMBRE', 'DESCRIPCION', 'TIPO'];
 
   //DataSource para popular la tabla
   dataSource = new MatTableDataSource<any>();
   data : any = [];
 
-  ELEMENT_DATA: any = [
-	  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-	  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-	  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-	  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-	  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-	  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-	  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-	  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-	  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-	  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  ];
+  marker= new google.maps.Marker();
 
-  constructor() { }
+  constructor(private _service: ServicioAngularOracleService,private _router: Router) { }
 
   ngOnInit(): void {
-  	this.dataSource.data = this.ELEMENT_DATA;
+  	this.dataSource.data = this.data;
   	this.options = {
         center: {lat: 36.890257, lng: 30.707417},
         zoom: 12
     };
-
     
   }
 
-  zoomIn(map) {
+  buscar(lat:String, lngt:String) {
+  	 if (lngt=="" || lat== "")
+  	 	return;
+  	this._service.get("BusCoord/"+lat+"/"+lngt).subscribe(data => {
+  		if(!this.displayedColumns.find(c => c=='OPCIONES'))
+          this.displayedColumns.push('OPCIONES'); 
+  		this.dataSource.data = data; 
+  	});
+  }
+
+  lugar(direccion: string,map) {
+  	if (direccion =="")
+  		return;
+  	this.geocode({address:direccion},map);
+  }
+
+  geocode(request: google.maps.GeocoderRequest, map): void {
+    this.marker.setMap(null);
+    const geocoder = new google.maps.Geocoder();
+    const infowindow = new google.maps.InfoWindow();
+    geocoder.geocode(request, function (response, result) {
+      console.log(response);
+      map.setCenter(response[0].geometry.location);
+      this.marker = new google.maps.Marker({
+          position: response[0].geometry.location,
+          map: map,
+       });
+    })
+}
+
+  zoomIn(lat,lng,map) {
+  	this.marker.setMap(null);
   	const geocoder = new google.maps.Geocoder();
     const infowindow = new google.maps.InfoWindow();
     const latlng = {
-	    lat: parseFloat('40.714224'),
-	    lng: parseFloat('-73.961452'),
+	    lat: parseFloat(lat),
+	    lng: parseFloat(lng),
 	};
 
-  	const maps:google.maps.Map = map;
+  	const maps: google.maps.Map = map;
 	geocoder.geocode({ location: latlng }, function (response, result) {
       if (result=="OK") {
         map.setZoom(11);
@@ -69,5 +91,9 @@ export class MapComponent implements OnInit {
         window.alert("No results found");
       }
     });
+  }
+
+  routeMore(id) {
+  	this._router.navigate(['/detalles/', id]);
   }
 }
