@@ -76,13 +76,13 @@ app.get('/select', function (req, res) {
 app.get('/BusCoord/:lat/:lngt', function (req, res) {
     "use strict";
 
-    console.log("siussssss");
-    const lngt_inf = Number(req.params.lngt) -0.03;
-    const lngt_sup = Number(req.params.lngt) +0.03;
+    
+    const lngt_inf = Number(req.params.lngt) -0.04;
+    const lngt_sup = Number(req.params.lngt) +0.04;
 
-    const lat_inf = Number(req.params.lat) -0.03;
-    const lat_sup = Number(req.params.lat) +0.03;
-
+    const lat_inf = Number(req.params.lat) -0.04;
+    const lat_sup = Number(req.params.lat) +0.04;
+    console.log(lat_sup);
     oracledb.getConnection(connAttrs, function (err, connection) {
         if (err) {
             // Error connecting to DB
@@ -95,8 +95,100 @@ app.get('/BusCoord/:lat/:lngt', function (req, res) {
             return;
         }
 
-        const query = "SELECT NOMBRE, DESCRIPCION, TIPO FROM RESTAURANTE WHERE LATITUD>"+lat_inf+" AND LATITUD<"+lat_sup+" AND LONGITUD>"+lngt_inf+" AND LONGITUD<"+lngt_sup
+        const query = "SELECT NOMBRE, DESCRIPCION, TIPO, ID, LATITUD, LONGITUD FROM RESTAURANTE WHERE LATITUD>"+lat_inf+" AND LATITUD<"+lat_sup+" AND LONGITUD>"+lngt_inf+" AND LONGITUD <"+lngt_sup;
+        console.log(query);
+        connection.execute(query, {}, {
+            outFormat: oracledb.OBJECT // Return the result as Object
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.contentType('application/json').status(200);
+                res.send(JSON.stringify(result.rows));
+            }
+            // Release the connection
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+});
 
+app.get('/detalles/:id', function (req, res) {
+    "use strict";
+
+    
+    const ID = Number(req.params.id);
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error connecting to DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+
+        const query = "SELECT * FROM RESTAURANTE WHERE ID="+ID;
+        console.log(query);
+        connection.execute(query, {}, {
+            outFormat: oracledb.OBJECT // Return the result as Object
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.contentType('application/json').status(200);
+                res.send(JSON.stringify(result.rows));
+            }
+            // Release the connection
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+});
+
+app.get('/empresa/:id', function (req, res) {
+    "use strict";
+
+    
+    const ID = Number(req.params.id);
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error connecting to DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+
+        const query = "SELECT * FROM EMPRESA WHERE ID_EMPRESA="+ID;
+        console.log(query);
         connection.execute(query, {}, {
             outFormat: oracledb.OBJECT // Return the result as Object
         }, function (err, result) {

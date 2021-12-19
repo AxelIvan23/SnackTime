@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { HttpHeaders } from '@angular/common/http';
 import { ServicioAngularOracleService } from '../servicio-angular-oracle.service';
+import { Router } from '@angular/Router';
 
 @Component({
   selector: 'app-map',
@@ -23,7 +24,7 @@ export class MapComponent implements OnInit {
 
   marker= new google.maps.Marker();
 
-  constructor(private _service: ServicioAngularOracleService) { }
+  constructor(private _service: ServicioAngularOracleService,private _router: Router) { }
 
   ngOnInit(): void {
   	this.dataSource.data = this.data;
@@ -38,6 +39,8 @@ export class MapComponent implements OnInit {
   	 if (lngt=="" || lat== "")
   	 	return;
   	this._service.get("BusCoord/"+lat+"/"+lngt).subscribe(data => {
+  		if(!this.displayedColumns.find(c => c=='OPCIONES'))
+          this.displayedColumns.push('OPCIONES'); 
   		this.dataSource.data = data; 
   	});
   }
@@ -62,13 +65,13 @@ export class MapComponent implements OnInit {
     })
 }
 
-  zoomIn(map) {
+  zoomIn(lat,lng,map) {
   	this.marker.setMap(null);
   	const geocoder = new google.maps.Geocoder();
     const infowindow = new google.maps.InfoWindow();
     const latlng = {
-	    lat: parseFloat('40.714224'),
-	    lng: parseFloat('-73.961452'),
+	    lat: parseFloat(lat),
+	    lng: parseFloat(lng),
 	};
 
   	const maps: google.maps.Map = map;
@@ -76,17 +79,21 @@ export class MapComponent implements OnInit {
       if (result=="OK") {
         map.setZoom(11);
 
-        this.marker = new google.maps.Marker({
+        const marker = new google.maps.Marker({
           position: latlng,
           map: map,
         });
 
         console.log(response);
         infowindow.setContent(response[0].formatted_address);
-        infowindow.open(map, this.marker);
+        infowindow.open(map, marker);
       } else {
         window.alert("No results found");
       }
     });
+  }
+
+  routeMore(id) {
+  	this._router.navigate(['/detalles/', id]);
   }
 }
