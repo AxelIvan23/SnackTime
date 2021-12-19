@@ -44,7 +44,7 @@ app.get('/select', function (req, res) {
             }));
             return;
         }
-        connection.execute("SELECT NOMBRE FROM RESTAURANTE ORDER BY RANKING DESC", {}, {
+        connection.execute("SELECT NOMBRE FROM RESTAURANTE WHERE TIPO='Mexicano' AND ROWNUM <=5 ORDER BY RANKING DESC", {}, {
             outFormat: oracledb.OBJECT // Return the result as Object
         }, function (err, result) {
             if (err) {
@@ -71,8 +71,136 @@ app.get('/select', function (req, res) {
         });
     });
 });
+app.get('/select2', function (req, res) {
+    "use strict";
 
-app.post('/create', async function(req, res) {
+    console.log("siu");
+
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error connecting to DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute("SELECT NOMBRE FROM RESTAURANTE WHERE TIPO='Cafe' AND ROWNUM <=5 ORDER BY RANKING DESC", {}, {
+            outFormat: oracledb.OBJECT // Return the result as Object
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.contentType('application/json').status(200);
+                res.send(JSON.stringify(result.rows));
+				
+            }
+            // Release the connection
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+});
+app.get('/select3', function (req, res) {
+    "use strict";
+
+    console.log("siu");
+
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error connecting to DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute("SELECT NOMBRE FROM RESTAURANTE WHERE TIPO='Marisco' AND ROWNUM <=5 ORDER BY RANKING DESC", {}, {
+            outFormat: oracledb.OBJECT // Return the result as Object
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.contentType('application/json').status(200);
+                res.send(JSON.stringify(result.rows));
+				
+            }
+            // Release the connection
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+});
+app.get('/select4', function (req, res) {
+    "use strict";
+
+    console.log("siu");
+
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error connecting to DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute("SELECT NOMBRE FROM RESTAURANTE WHERE TIPO='Italiano' AND ROWNUM <=5 ORDER BY RANKING DESC", {}, {
+            outFormat: oracledb.OBJECT // Return the result as Object
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.contentType('application/json').status(200);
+                res.send(JSON.stringify(result.rows));
+				
+            }
+            // Release the connection
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+});
+app.post('/actualizar', async function(req, res) {
     oracledb.getConnection(connAttrs, function (err, connection) {
         if (err) {
             // Error connecting to DB
@@ -91,7 +219,7 @@ app.post('/create', async function(req, res) {
         const createObj = req.body.createObj;
 
         var keys = Object.keys(createObj);
-        var query = `INSERT INTO PROVEDOR VALUES(${key})`;
+        var query = `INSERT INTO EMPRESA VALUES(${key})`;
 
         console.log(`Ejecutando: ${query}`);
 

@@ -30,7 +30,7 @@
                                         </div>
                                         <div class="form-floating mb-3">
                                             <label for="inputEmail">Fecha</label>
-                                          <input class="form-control" id="inputEmail" type="datetime-local" placeholder="Ej. Tacos picantes"/>
+                                          <input class="form-control" id="inputEmail" type="date" placeholder="Ej. Tacos picantes"/>
                                         </div> 
           
                                        <div class="card-header"><h3 class="text-center font-weight-light my-4">Datos de contacto</h3></div>
@@ -64,7 +64,7 @@
                                             </div>
                                         </div>
                                         <div class="mt-4 mb-0">
-                                            <div class="d-grid"><a class="btn btn-primary btn-block" [routerLink]="['/iniciar']">Crear Cuenta</a></div>
+                                            <div class="d-grid"><a class="btn btn-primary btn-block" (click)="createRow()" [routerLink]="['/iniciar']">Crear Cuenta</a></div>
                                         </div>
                                     </form>
                                 </div>
